@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!--<properties resource="db.properties"></properties>-->
+	<!-- 全局参数设置 -->
+	<settings>
+		<!-- lazyLoadingEnabled:延迟加载启动，默认是false -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- aggressiveLazyLoading：积极的懒加载，false的话按需加载，默认是true -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+         
+        <!-- 开启二级缓存，默认是false -->
+        <setting name="cacheEnabled" value="true"/>
+	</settings>
+	
+	<!-- 别名设置 -->
+	<typeAliases>
+		<package name="po"/>
+	</typeAliases>
+
+    <!-- 已在spring中整合 -->
+  <!--<environments default="development">-->
+    <!--<environment id="development">-->
+      <!--<transactionManager type="JDBC"/>-->
+      <!--<dataSource type="POOLED">-->
+        <!--<property name="driver" value="${jdbc.driver}"/>-->
+        <!--<property name="url" value="${jdbc.url}"/>-->
+        <!--<property name="username" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+      <!--</dataSource>-->
+    <!--</environment>-->
+  <!--</environments>-->
+  <!--<mappers>-->
+      <!--&lt;!&ndash;<mapper resource="mapper/UserMapper.xml"/>&ndash;&gt;-->
+      <!--<package name="mapper"/>-->
+      <!--&lt;!&ndash;<mapper class="mapper.UserMapper"/>&ndash;&gt;-->
+  <!--</mappers>-->
+</configuration>

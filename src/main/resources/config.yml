@@ -1,0 +1,24 @@
+#存放一些web配置信息
+Version: 1.0
+#数据库的一些信息，默认为MySql
+database:
+  host: localhost
+  port: 3306
+  database: tyun
+  user: thet
+  password: thet
+
+#七牛云
+#设置密钥和空间名称，默认空间为tyun，请先在七牛云创建好空间
+#Chain domain 设置空间的外链域名，格式：xxx.yourdomain.xxx
+ACCESS_KEY: rTQXEQzp9Gh6Be8-xzLoo30KS2TxbaJvBQy6THkx
+SECRET_KEY: OyV2zoN695cM0EpPEKGGDyTbWmKA-U16GcBBJJ_q
+bucket: tyun
+chain_domain: download.90play.cn
+
+#开启本地存储
+#设置use ，启用和停止本地存储,true or false
+#设置本地存储路径，修改folder，默认为uploadFile 文件夹
+LocalStorage:
+  use: false
+  folder: uploadFile

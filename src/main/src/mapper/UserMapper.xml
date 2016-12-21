@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+	<!-- 
+	id 为statement的id
+	parameterType:指定输入参数的类型
+	#{}表示一个占位符
+	resultType:指定Sql输出结果的所映射的java对象类型
+	 -->
+	<select id="findUserById" parameterType="int" resultType="po.User">
+		SELECT * FROM ty_user WHERE id=#{id}
+	</select>
+
+	<select id="getAllUser" resultType="po.User">
+		SELECT * FROM ty_user
+	</select>
+
+	<!-- 根据用户名查用户密码 -->
+	<select id="getPasswordByUsername" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT password FROM ty_user WHERE username = #{username}
+	</select>
+	
+	<!-- 
+	${}采用sql拼接方式,容易引起sql注入
+	 -->
+	<select id="findUserByName" parameterType="String" resultType="po.User">
+		SELECT * FROM ty_user WHERE username LIKE #{value}
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="addUser" parameterType="po.User">
+		<!-- 
+		自增主键：
+		得到刚Insert记录的主键值
+		keyProperty:将查询到的主键值映射到指定的属性
+		 -->
+		<selectKey keyProperty="id" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		<!-- 非自增主键使用UUID -->
+		<!-- <selectKey keyProperty="id" order="AFTER" resultType="string">
+			SELECT UUID()
+		</selectKey> -->
+		INSERT INTO ty_user(username,password) value(#{username},#{password})
+	</insert>
+	
+	<!-- 删除用户 -->
+	<delete id="delUser" parameterType="int">
+		DELETE FROM ty_user WHERE id=#{id}
+	</delete>
+	
+	<!-- 修改用户 -->
+	<update id="updateUser" parameterType="po.User">
+		update ty_user set username=#{username},password=#{password} where id=#{id}
+	</update>
+</mapper>
