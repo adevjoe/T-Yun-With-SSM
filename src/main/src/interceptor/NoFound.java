@@ -13,7 +13,7 @@ public class NoFound implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String url = httpServletRequest.getRequestURI();
-        //TODO
+
         return true;
     }
 

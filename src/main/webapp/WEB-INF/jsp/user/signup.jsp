@@ -69,6 +69,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <form role="form" action="${pageContext.request.contextPath}/user/account/signupSubmit" method="post">
+                    <h3>${tip}</h3>
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" placeholder="请输入用户名...">
                     </div>

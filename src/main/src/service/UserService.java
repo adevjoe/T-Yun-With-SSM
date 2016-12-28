@@ -25,6 +25,14 @@ public interface UserService {
     User getUserById(int id) throws Exception;
 
     /**
+     * 根据用户名查询用户信息
+     * @param username 用户名
+     * @return 用户pojo
+     * @throws Exception
+     */
+    User getUserByUsername(String username) throws Exception;
+
+    /**
      * 根据用户名获取用户id
      * @param username 用户名
      * @return 用户Id

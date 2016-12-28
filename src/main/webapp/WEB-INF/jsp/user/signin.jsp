@@ -67,9 +67,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <h2 class="col-md-4">
                 <form role="form" action="${pageContext.request.contextPath}/user/account/signinSubmit" method="post">
-                    <span>${success}</span>
+                    <h3>${tip}</h3>
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" placeholder="请输入用户名...">
                     </div>

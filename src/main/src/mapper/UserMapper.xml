@@ -27,6 +27,11 @@
 		SELECT id FROM ty_user WHERE username = #{username}
 	</select>
 
+	<!-- 根据用户名查用户信息 -->
+	<select id="getUserByUsername" parameterType="java.lang.String" resultType="po.User">
+		SELECT * FROM ty_user WHERE username = #{username}
+	</select>
+
 	<!-- 
 	${}采用sql拼接方式,容易引起sql注入
 	 -->

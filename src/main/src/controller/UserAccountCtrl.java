@@ -55,7 +55,6 @@ public class UserAccountCtrl {
         return "redirect:" + request.getContextPath() + "/";
     }
 
-    //TODO 注册的验证
     /**
      * 用户登录提交
      * @param user
@@ -94,8 +93,12 @@ public class UserAccountCtrl {
         if (session.getAttribute("isLogin")!=null){
             return "redirect:" + request.getContextPath() + "/";
         }
-        userService.addUser(user);
-        model.addAttribute("success","注册成功，请登录！");
-        return "user/signin";
+        if (userService.getUserByUsername(user.getUsername())==null){
+            userService.addUser(user);
+            model.addAttribute("tip","注册成功，请登录！");
+            return "user/signin";
+        }
+        model.addAttribute("tip","用户名重复，请重新输入！");
+        return "user/signup";
     }
 }
