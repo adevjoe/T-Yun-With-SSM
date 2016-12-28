@@ -27,4 +27,7 @@
     <!-- 用户管理的service -->
     <bean id="UserService" class="impl.UserServiceImpl"/>
 
+    <!-- 文件管理的service -->
+    <bean id="FolderService" class="impl.FolderServiceImpl"/>
+
 </beans>
