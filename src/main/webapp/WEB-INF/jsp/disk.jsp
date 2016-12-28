@@ -44,10 +44,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="">上传<form id="upload-form" role="form" action="account/upload" method="post" enctype="multipart/form-data">
+                        <a>上传<form id="upload-form" role="form" method="post" action="${pageContext.request.contextPath}/disk/upload" enctype="multipart/form-data">
                                 <input type="file" name="file" onchange="upload()">
-                            </form>
-                        </a>
+                            </form></a>
                     </li>
                     <%if (session.getAttribute("isLogin")==null){%>
                     <li><a href="${pageContext.request.contextPath}/user/account/signin">登录</a></li>

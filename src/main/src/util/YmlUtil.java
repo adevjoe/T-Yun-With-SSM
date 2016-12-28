@@ -19,7 +19,7 @@ public class YmlUtil {
         String value = null;
         String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         try {
-			Map m = Yaml.loadType(new FileInputStream(new File(path+ "config/config.yml")), HashMap.class);
+			Map m = Yaml.loadType(new FileInputStream(new File(path+ "/config.yml")), HashMap.class);
             value = m.get(key).toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class YmlUtil {
         String value = null;
         String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         try {
-            Map m = Yaml.loadType(new FileInputStream(new File(path+ "config/config.yml")), HashMap.class);
+            Map m = Yaml.loadType(new FileInputStream(new File(path+ "/config.yml")), HashMap.class);
             m = (Map) m.get(key1);
             value = m.get(key2).toString();
         } catch (FileNotFoundException e) {

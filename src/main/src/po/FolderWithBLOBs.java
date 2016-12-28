@@ -1,26 +1,30 @@
 package po;
 
 public class FolderWithBLOBs extends Folder {
-    private String fileName;
 
-    private String parentPath;
+    //文件名
+    private String file_name;
 
+    //父路径
+    private String parent_path;
+
+    //内容，如果是文件，则填写，否则为空
     private String comment;
 
-    public String getFileName() {
-        return fileName;
+    public String getFile_name() {
+        return file_name;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
     }
 
-    public String getParentPath() {
-        return parentPath;
+    public String getParent_path() {
+        return parent_path;
     }
 
-    public void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
+    public void setParent_path(String parent_path) {
+        this.parent_path = parent_path;
     }
 
     public String getComment() {

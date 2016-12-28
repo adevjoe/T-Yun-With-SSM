@@ -15,6 +15,9 @@ public interface UserMapper {
     //根据用户名查询用户密码
     public String getPasswordByUsername(String username)throws Exception;
 
+    //根据用户名查询用户id
+    public int getIdByUsername(String username) throws Exception;
+
     //查询所有用户
     public List<User> getAllUser() throws Exception;
 

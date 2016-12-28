@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int getIdByUsername(String username) throws Exception {
+        return userMapper.getIdByUsername(username);
+    }
+
+    @Override
     public void addUser(User user) throws Exception {
         user.setPassword(MD5.getInstance().getMD5(user.getPassword()));
         userMapper.addUser(user);

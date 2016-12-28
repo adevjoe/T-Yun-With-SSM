@@ -25,12 +25,26 @@ public interface UserService {
     User getUserById(int id) throws Exception;
 
     /**
+     * 根据用户名获取用户id
+     * @param username 用户名
+     * @return 用户Id
+     * @throws Exception
+     */
+    int getIdByUsername(String username) throws Exception;
+
+    /**
      * 执行注册用户的操作
      * @param user 用户pojo信息
      * @throws Exception
      */
     void addUser(User user) throws Exception;
 
+    /**
+     * 执行用户登录操作
+     * @param user 用户pojo信息
+     * @return 用户登录状态 true为登录成功，false为登录失败
+     * @throws Exception
+     */
     boolean login(User user)throws Exception;
 
 }

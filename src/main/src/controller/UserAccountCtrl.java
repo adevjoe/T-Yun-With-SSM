@@ -39,7 +39,9 @@ public class UserAccountCtrl {
         if (action.equalsIgnoreCase("signout")){
             if (session.getAttribute("isLogin")!=null){
                 session.invalidate();
+                return "redirect:" + request.getContextPath() + "/";
             }
+            return "redirect:" + request.getContextPath() + "/";
         }
         if (session.getAttribute("isLogin")!=null){
             return "redirect:" + request.getContextPath() + "/";
@@ -53,6 +55,7 @@ public class UserAccountCtrl {
         return "redirect:" + request.getContextPath() + "/";
     }
 
+    //TODO 注册的验证
     /**
      * 用户登录提交
      * @param user

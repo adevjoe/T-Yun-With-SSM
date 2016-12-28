@@ -5,29 +5,20 @@ public class Folder {
     //文件或文件夹唯一标识
     private Integer id;
 
-    //文件名
-    private String file_name;
-
     //是否为文件夹  0为文件  1为文件夹
-    private Integer isDir;
-
-    //父路径
-    private String parent_path;
-
-    //内容，如果是文件，则填写，否则为空
-    private String comment;
+    private Integer is_dir;
 
     //创建时间
-    private Integer createTime;
+    private long create_time;
 
     //最后更新时间
-    private Integer updateTime;
+    private long update_time;
 
     //操作的用户ID
-    private Integer userId;
+    private Integer user_id;
 
     //文件大小 可以为空
-    private Integer size;
+    private long size;
 
     public Integer getId() {
         return id;
@@ -37,67 +28,43 @@ public class Folder {
         this.id = id;
     }
 
-    public Integer getIsDir() {
-        return isDir;
+    public Integer getIs_dir() {
+        return is_dir;
     }
 
-    public void setIsDir(Integer isDir) {
-        this.isDir = isDir;
+    public void setIs_dir(Integer is_dir) {
+        this.is_dir = is_dir;
     }
 
-    public String getFile_name() {
-        return file_name;
+    public long getCreate_time() {
+        return create_time;
     }
 
-    public void setFile_name(String file_name) {
-        this.file_name = file_name;
+    public void setCreate_time(long create_time) {
+        this.create_time = create_time;
     }
 
-    public String getParent_path() {
-        return parent_path;
+    public long getUpdate_time() {
+        return update_time;
     }
 
-    public void setParent_path(String parent_path) {
-        this.parent_path = parent_path;
+    public void setUpdate_time(long update_time) {
+        this.update_time = update_time;
     }
 
-    public String getComment() {
-        return comment;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public Integer getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Integer createTime) {
-        this.createTime = createTime;
-    }
-
-    public Integer getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Integer updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(long size) {
         this.size = size;
     }
 }

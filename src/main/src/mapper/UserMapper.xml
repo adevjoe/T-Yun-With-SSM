@@ -21,7 +21,12 @@
 	<select id="getPasswordByUsername" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT password FROM ty_user WHERE username = #{username}
 	</select>
-	
+
+	<!-- 根据用户名查询用户id -->
+	<select id="getIdByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT id FROM ty_user WHERE username = #{username}
+	</select>
+
 	<!-- 
 	${}采用sql拼接方式,容易引起sql注入
 	 -->

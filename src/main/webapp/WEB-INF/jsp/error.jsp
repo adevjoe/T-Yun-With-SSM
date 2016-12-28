@@ -5,6 +5,7 @@
     <title>error</title>
 </head>
 <body>
-${message}
+${message}<br>
+<a href="${pageContext.request.contextPath}/">点击返回主页</a>
 </body>
 </html>
