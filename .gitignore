@@ -18,6 +18,7 @@ hs_err_pid*
 
 .gitignore
 .idea/
+.idea/vcs.xml
 src/main/test
 T-Yun.iml
 target/

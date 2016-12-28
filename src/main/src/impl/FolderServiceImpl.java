@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import po.FolderWithBLOBs;
 import service.FolderService;
 
+import java.util.List;
+
 /**
  * Created by Joe_C on 2016/12/26.
  */
@@ -15,5 +17,10 @@ public class FolderServiceImpl implements FolderService {
     @Override
     public void addFolder(FolderWithBLOBs folderWithBLOBs) throws Exception {
         folderMapper.addFolder(folderWithBLOBs);
+    }
+
+    @Override
+    public List<FolderWithBLOBs> listFolder(FolderWithBLOBs folderWithBLOBs) throws Exception {
+        return folderMapper.listFolder(folderWithBLOBs);
     }
 }

@@ -2,10 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import po.FolderWithBLOBs;
 import service.FolderService;
@@ -16,19 +13,21 @@ import util.YmlUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Created by Joe_C on 2016/12/4.
  */
 @Controller
+@RequestMapping("/disk")
 public class DiskCtrl {
     @Autowired
     private FolderService folderService;
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/disk", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "", method = {RequestMethod.POST, RequestMethod.GET})
     public String disk(HttpSession session, HttpServletRequest request) throws Exception {
         if (session.getAttribute("isLogin") != null) {
             return "disk";
@@ -36,7 +35,7 @@ public class DiskCtrl {
         return "redirect:" + request.getContextPath() + "/user/account/signin";
     }
 
-    @RequestMapping(value = "/disk/upload", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/upload", method = {RequestMethod.POST, RequestMethod.GET})
     public
     @ResponseBody
     FolderWithBLOBs upload(@RequestParam(value = "file") MultipartFile file, HttpSession session, HttpServletRequest request) throws Exception {
@@ -78,6 +77,30 @@ public class DiskCtrl {
             }
         }
         return folder;
+    }
+
+    @RequestMapping(value = "/createFolder")
+    public @ResponseBody FolderWithBLOBs createFolder(HttpSession session, FolderWithBLOBs folderWithBlobs) throws Exception{
+        FolderWithBLOBs folder = new FolderWithBLOBs();
+        //存储文件信息
+        folder.setFile_name(folderWithBlobs.getFile_name());
+        folder.setParent_path(folderWithBlobs.getParent_path());
+        folder.setIs_dir(1);
+        folder.setCreate_time(System.currentTimeMillis());
+        folder.setUpdate_time(System.currentTimeMillis());
+        folder.setUser_id(userService.getIdByUsername((String) session.getAttribute("username")));
+        //存储到数据库
+        folderService.addFolder(folder);
+        return folder;
+    }
+
+    @RequestMapping(value = "/list")
+    public @ResponseBody
+    List<FolderWithBLOBs> listFolder(HttpSession session, @RequestParam(value = "path") String path) throws Exception{
+        FolderWithBLOBs folderSearch = new FolderWithBLOBs();
+        folderSearch.setUser_id(userService.getIdByUsername((String) session.getAttribute("username")));
+        folderSearch.setParent_path(path);
+        return folderService.listFolder(folderSearch);
     }
 
     private String getRandomString(int count) {

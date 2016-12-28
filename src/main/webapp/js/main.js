@@ -30,10 +30,6 @@ $(document).ready(function() {
 
 });
 
-
-function upload(){
-	$("#upload-form").submit();
-}
 function deleteFile(key){
 	
 }

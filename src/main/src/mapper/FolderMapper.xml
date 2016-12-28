@@ -2,10 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.FolderMapper" >
 
-  <!--存储上传文件的信息-->
+  <!-- 存储上传文件的信息 -->
   <insert id="addFolder" parameterType="po.FolderWithBLOBs">
     INSERT INTO ty_folder(file_name, is_dir, parent_path,comment,create_time,update_time,user_id,size)
         values(#{file_name},#{is_dir},#{parent_path}, #{comment},#{create_time},#{update_time},#{user_id},#{size})
   </insert>
+
+  <!-- 获取文件列表 -->
+  <select id="listFolder" parameterType="po.FolderWithBLOBs" resultType="po.FolderWithBLOBs">
+    SELECT * FROM ty_folder WHERE user_id = #{user_id} AND parent_path = #{parent_path}
+  </select>
 
 </mapper>

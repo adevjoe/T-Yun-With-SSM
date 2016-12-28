@@ -19,7 +19,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="http://cdn.90play.cn/ZeroClipboard.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/disk.js"></script>
     <!-- 导航 -->
     <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
         <div class="container">
