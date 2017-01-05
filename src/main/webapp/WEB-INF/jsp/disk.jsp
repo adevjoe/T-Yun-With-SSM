@@ -17,6 +17,7 @@
 <body style="padding-top: 70px">
     <%--<script src="http://cdn.90play.cn/libs/jquery/1.10.2/jquery.min.js"></script>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.form.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="http://cdn.90play.cn/ZeroClipboard.js"></script>
     <script src="${pageContext.request.contextPath}/js/disk.js"></script>
@@ -44,7 +45,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a>上传<form id="upload-form" role="form" method="post" action="${pageContext.request.contextPath}/disk/upload" enctype="multipart/form-data">
+                        <a>上传<form id="upload-form" role="form" method="post" enctype="multipart/form-data">
                                 <input type="file" name="file" onchange="upload()">
                             </form></a>
                     </li>
@@ -72,24 +73,43 @@
     <!-- 布局 -->
     <div class="container">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 table-responsive">
+            <div class="col-md-3">
+                <%-- 面板 --%>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>我的网盘</h4>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 table-responsive">
+                <%-- 路径导航 --%>
+                <ol class="breadcrumb" id="list-path">
+                    <li class="active"><a href="#" onclick="loadFolder('/')">根目录</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ol>
                 <!-- Table -->
-                <table class="table table-hover">
-                    <tr>
-                        <td>ID</td>
-                        <td>文件名</td>
-                        <td>文件大小</td>
-                        <td>文件类型</td>
-                        <td>上传日期</td>
-                        <td><li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">全部<span class="caret"></span></a>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li><a href="#" onclick="">删除</a></li>
-                            </ul>
-                        </li></td>
-                    </tr>
+                <div>
+                    <h4>Tool</h4>
+                </div>
+                <table class="table table-hover" id="file-list">
+
                 </table>
+                <%-- 分页 --%>
+                <nav>
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </nav>
                 <!-- copy modal -->
                 <div class="modal fade model-copy" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
@@ -103,9 +123,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-1">
-
             </div>
         </div>
         <div class="row" style="text-align: center;margin-top: 700px;">
