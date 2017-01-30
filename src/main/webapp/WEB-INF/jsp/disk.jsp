@@ -87,13 +87,12 @@
             <div class="col-md-9 table-responsive">
                 <%-- 路径导航 --%>
                 <ol class="breadcrumb" id="list-path">
-                    <li class="active"><a href="#" onclick="loadFolder('/')">根目录</a></li>
-                    <li><a href="#">Library</a></li>
-                    <li class="active">Data</li>
+                    <li class="active"><a href="javascript:;" onclick="loadFolder('/')">根目录</a></li>
+                    <li>/</li>
                 </ol>
                 <!-- Table -->
                 <div>
-                    <h4>Tool</h4>
+                    <%--<h4>Tool</h4>--%>
                 </div>
                 <table class="table table-hover" id="file-list">
 

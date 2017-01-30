@@ -2,6 +2,9 @@ $(document).ready(function() {
 	init();
 });
 
+/**
+ * 上传文件
+ */
 function upload(){
 	$("#upload-form").ajaxSubmit({
 		url: "../disk/upload",
@@ -11,6 +14,7 @@ function upload(){
 		dataType:'json',
 		success: function (data)
 		{
+			//上传成功后重载页面，以显示上传的文件
 			window.location.reload();
 		},
 		error: function (data)
@@ -20,24 +24,55 @@ function upload(){
 	});
 }
 
+/**
+ * 加载某个路径的文件信息
+ * @param path
+ */
 function loadFolder(path){
-	$("#list-path").empty();
 	$.getJSON("../disk/list", { path: path}, function(list){
 		addROW(list);
-		$("#list-path").append("");
+		$("#list-path").append("<li>/</li><li class='active'><a href='javascript:;' onclick='loadFolder("+"\""+path+"\""+")'>"+path+"</a></li>");
 	});
 }
 
+/**
+ * 添加文件的行
+ * @param list 传进json类型的参数
+ */
 function addROW(list){
+	list = list["object"];
+	//把文件夹排到前面
+	var num = 0;
+	for (var i = 0;i<list.length;i++){
+		if (list[i]["is_dir"]>0){
+			var ex = list[num];
+			//交换
+			list[num] = list[i];list[i] = ex;
+			num++;
+		}
+	}
+	//先清空列表
 	$("#file-list").empty();
+	//遍历文件信息
 	for (var i= 0;i<list.length;i++){
-		$("#file-list").append("<tr>"+"<td>"+list[i]["file_name"]+"</td>"+
-			"<td>"+formatSize(list[i]["size"])+"</td>" +
-			"<td>"+formatDate(list[i]["update_time"])+"</td>" +
-			"</tr>");
+		if (list[i]["is_dir"]>0){
+			$("#file-list").append("<tr>"+"<td><a href='javascript:;' onclick='loadFolder("+"\""+list[i]['file_name']+"\""+")'>"+list[i]['file_name']+"</a></td>"+
+				"<td>"+formatSize(list[i]["size"])+"</td>" +
+				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
+				"</tr>");
+		}
+		else {
+			$("#file-list").append("<tr>"+"<td>"+list[i]["file_name"]+"</td>"+
+				"<td>"+formatSize(list[i]["size"])+"</td>" +
+				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
+				"</tr>");
+		}
 	}
 }
 
+/**
+ * 初始化disk 页面
+ */
 function init(){
 	$.getJSON("../disk/list", { path: "/"}, function(list){
 		addROW(list);
@@ -109,5 +144,5 @@ function formatDate(str){
 	return fmt;
 	}
 	var date = new Date(str);
-	return date.pattern("yyyy-MM-dd hh:mm:ss")
+	return date.pattern("yyyy-MM-dd HH:mm:ss")
 }

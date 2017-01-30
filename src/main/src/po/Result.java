@@ -8,11 +8,11 @@ public class Result {
     //响应码
     private int responseCode;
 
-    //返回的对象
-    private Object object;
-
     //返回消息
     private String msg;
+
+    //返回的对象
+    private Object object;
 
     public int getResponseCode() {
         return responseCode;
