@@ -31,7 +31,9 @@ function upload(){
 function loadFolder(path){
 	$.getJSON("../disk/list", { path: path}, function(list){
 		addROW(list);
-		$("#list-path").append("<li>/</li><li class='active'><a href='javascript:;' onclick='loadFolder("+"\""+path+"\""+")'>"+path+"</a></li>");
+		$("#list-path").empty();
+		$("#list-path").append("<li class='active'><a href='javascript:;' onclick='loadFolder('根目录')'>根目录</a></li>")
+		$("#list-path").append("<li class='active'><a href='javascript:;' onclick='loadFolder("+"\""+path+"\""+")'>"+path+"</a></li>");
 	});
 }
 
@@ -74,7 +76,7 @@ function addROW(list){
  * 初始化disk 页面
  */
 function init(){
-	$.getJSON("../disk/list", { path: "/"}, function(list){
+	$.getJSON("../disk/list", { path: "根目录"}, function(list){
 		addROW(list);
 	});
 }

@@ -4,8 +4,8 @@
 
   <!-- 存储上传文件的信息 -->
   <insert id="addFolder" parameterType="po.FolderWithBLOBs">
-    INSERT INTO ty_folder(file_name, is_dir, parent_path,comment,create_time,update_time,user_id,size)
-        values(#{file_name},#{is_dir},#{parent_path}, #{comment},#{create_time},#{update_time},#{user_id},#{size})
+    INSERT INTO ty_folder(file_name, is_dir, parent_path, level,comment,create_time,update_time,user_id,size)
+        values(#{file_name},#{is_dir},#{parent_path}, #{level}, #{comment},#{create_time},#{update_time},#{user_id},#{size})
   </insert>
 
   <!-- 获取文件列表 -->

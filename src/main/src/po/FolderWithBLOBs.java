@@ -8,6 +8,9 @@ public class FolderWithBLOBs extends Folder {
     //父路径
     private String parent_path;
 
+    //文件层级
+    private int level;
+
     //内容，如果是文件，则填写，否则为空
     private String comment;
 
@@ -25,6 +28,14 @@ public class FolderWithBLOBs extends Folder {
 
     public void setParent_path(String parent_path) {
         this.parent_path = parent_path;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getComment() {

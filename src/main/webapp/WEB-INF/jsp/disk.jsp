@@ -87,8 +87,7 @@
             <div class="col-md-9 table-responsive">
                 <%-- 路径导航 --%>
                 <ol class="breadcrumb" id="list-path">
-                    <li class="active"><a href="javascript:;" onclick="loadFolder('/')">根目录</a></li>
-                    <li>/</li>
+                    <li class="active">根目录</li>
                 </ol>
                 <!-- Table -->
                 <div>
