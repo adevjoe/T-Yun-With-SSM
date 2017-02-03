@@ -39,16 +39,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="${pageContext.request.contextPath}/disk">我的文件</a></li>
-                    <li><a href="#">社区</a></li>
-                    <li><a href="photobucket.jsp">图床</a></li>
-                    <li><a href="Udisk.jsp">移动U盘</a></li>
+                    <li><a href="${pageContext.request.contextPath}/disk">社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/disk">图床</a></li>
+                    <li><a href="${pageContext.request.contextPath}/disk">移动U盘</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a>上传<form id="upload-form" role="form" method="post" enctype="multipart/form-data">
-                                <input type="file" name="file" onchange="upload()">
-                            </form></a>
-                    </li>
                     <%if (session.getAttribute("isLogin")==null){%>
                     <li><a href="${pageContext.request.contextPath}/user/account/signin">登录</a></li>
                     <li><a href="${pageContext.request.contextPath}/user/account/signup">注册</a></li><%}%>
@@ -80,7 +75,42 @@
                         <h4>我的网盘</h4>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        <div class="row">
+                            <div class="col-md-5">
+                                <%-- 上传文件按钮 --%>
+                                <form id="upload-form" role="form" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="file" onchange="upload()">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;上传
+                                    </button>
+                                </form>
+
+                            </div>
+                            <div class="col-md-7">
+                                <%-- 新建文件夹按钮 --%>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newFolderModal">
+                                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> &nbsp;新建文件夹
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <%-- 云盘使用量 --%>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" style="width: 35%">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                    <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div class="progress-bar progress-bar-danger" style="width: 10%">
+                                        <span class="sr-only">10% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,6 +122,15 @@
                 <!-- Table -->
                 <div>
                     <%--<h4>Tool</h4>--%>
+                    <%-- 警告框 --%>
+                    <div class="alert alert-success alert-dismissible" id="something_success" role="alert" hidden="">
+                        <button type="button" class="close" aria-label="Close"
+                                onclick="document.getElementById('something_success').setAttribute('hidden', '1')"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="alert alert-warning alert-dismissible" id="something_fail" role="alert" hidden="">
+                        <button type="button" class="close" aria-label="Close"
+                                onclick="document.getElementById('something_fail').setAttribute('hidden', '1')"><span aria-hidden="true">&times;</span></button>
+                    </div>
                 </div>
                 <table class="table table-hover" id="file-list">
 
@@ -108,6 +147,7 @@
                         <li><a href="#">&raquo;</a></li>
                     </ul>
                 </nav>
+                <%-- 模态框 --%>
                 <!-- copy modal -->
                 <div class="modal fade model-copy" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
@@ -121,6 +161,27 @@
                         </div>
                     </div>
                 </div>
+                <%-- 新建文件夹模态框 --%>
+                <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">新建文件夹:</label>
+                                        <input type="text" class="form-control" id="recipient-name"/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="newFolder(
+                                    document.getElementById('recipient-name').value)" data-dismiss="modal">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="row" style="text-align: center;margin-top: 400px;">

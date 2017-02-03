@@ -6,7 +6,7 @@ $(document).ready(function() {
  * 初始化disk 页面
  */
 function init(){
-	$.getJSON("../disk/list", { path: "根目录"}, function(list){
+	$.getJSON("../disk/list", { path: "根目录", level: 1}, function(list){
 		addROW(list);
 	});
 }
@@ -15,20 +15,22 @@ function init(){
  * 上传文件
  */
 function upload(){
+	var parent_path = $("#path-list>li")[$("#path-list>li").length-1].innerHTML;
+	var level = $("#path-list>li").length;
 	$("#upload-form").ajaxSubmit({
 		url: "../disk/upload",
 		type: "post",
-		async:false,
 		enctype: 'multipart/form-data',
 		dataType:'json',
+		data:{'parent_path':parent_path, 'level':level},
 		success: function (data)
 		{
 			//上传成功后重载页面，以显示上传的文件
-			window.location.reload();
+			loadFolder(parent_path);
 		},
 		error: function (data)
 		{
-			alert("出错" + data);
+			loadFolder(parent_path);
 		}
 	});
 }
@@ -38,14 +40,8 @@ function upload(){
  * @param path
  */
 function loadFolder(path){
-	$.getJSON("../disk/list", { path: path}, function(list){
-		//获取当前目录的层级
-		var level = 1;
-		if (!(path === "根目录")){
-			$.getJSON("../api/disk/pathInfo", { path: path}, function(list){
-				level = list["object"]["level"];
-			});
-		}
+	var level = $("#path-list>li").length;
+	$.getJSON("../disk/list", { path: path, level:level}, function(list){
 		//正式加载目录
 		if (path === "根目录"){//如果是'根目录' ，则没有a标签
 			addROW(list);
@@ -55,7 +51,7 @@ function loadFolder(path){
 		else {//遍历目录列表
 			addROW(list);
 			$("#path-list").empty();
-			$.getJSON("../api/disk/pathList", { path: path}, function(pathList){
+			$.getJSON("../api/disk/pathList", { path: path, level:level}, function(pathList){
 				var str = pathList["object"].split("/");//解析获取的字符串，递归文件路径
 				for (var i = 0;i<str.length-1; i++){
 					$("#path-list").append("<li class='active'><a href='javascript:;' onclick='loadFolder("+
@@ -69,12 +65,22 @@ function loadFolder(path){
 	});
 }
 
-/**
- * 加载文件路径
- * @param list 传进json类型的文件信息数组
- */
-function loadPath(list){
-
+function newFolder(file_name){
+	if (file_name === ""){
+		$("#something_fail>span").remove();
+		$("#something_fail").append("<span>您输入的文件夹名为空，请重新输入！</span>");
+		$("#something_fail").removeAttr('hidden');
+	}
+	else {
+		var parent_path = $("#path-list>li")[$("#path-list>li").length-1].innerHTML;
+		var level = $("#path-list>li").length;
+		$.getJSON("../api/disk/createFolder", { file_name: file_name, parent_path: parent_path, level:level}, function(data){
+			loadFolder(parent_path);
+			$("#something_success>span").remove();
+			$("#something_success").append("<span>"+ data['msg'] +"</span>");
+			$("#something_success").removeAttr('hidden');
+		});
+	}
 }
 
 /**

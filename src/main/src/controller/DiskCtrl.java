@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Joe_C on 2016/12/4.
@@ -100,37 +99,6 @@ public class DiskCtrl {
             result.setObject(folder);
             result.setMsg("上传成功！");
             return result;
-        }
-        result.setMsg("用户未登录！");
-        return result;
-    }
-
-    /**
-     * 创建文件夹
-     * @param session 会话
-     * @param folderWithBlobs 创建文件的一些参数
-     *                        file_name, parent_path, level 必须
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/createFolder")
-    public @ResponseBody Result createFolder(HttpSession session, FolderWithBLOBs folderWithBlobs) throws Exception{
-        Result result = new Result();
-        if (API_Utils.isLogin(session)) {
-            FolderWithBLOBs folder = new FolderWithBLOBs();
-            //存储文件信息
-            folder.setFile_name(folderWithBlobs.getFile_name());
-            folder.setParent_path(folderWithBlobs.getParent_path());
-            folder.setLevel(folderWithBlobs.getLevel());
-            folder.setIs_dir(1);
-            folder.setCreate_time(System.currentTimeMillis());
-            folder.setUpdate_time(System.currentTimeMillis());
-            folder.setUser_id(userService.getIdByUsername((String) session.getAttribute("username")));
-            //存储到数据库
-            folderService.addFolder(folder);
-            result.setObject(folder);
-            result.setMsg("创建" + folder.getFile_name() + "成功！");
-            return result;//TODO 需要修复文件夹同名bug
         }
         result.setMsg("用户未登录！");
         return result;
