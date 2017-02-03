@@ -67,7 +67,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
-            <h2 class="col-md-4">
+            <div class="col-md-4">
                 <form role="form" action="${pageContext.request.contextPath}/user/account/signinSubmit" method="post">
                     <h3>${tip}</h3>
                     <div class="form-group">
@@ -83,8 +83,8 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        <div class="row" style="text-align: center;margin-top: 410px;">
-            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a> All Rights Reserved</p>
+        <div class="row" style="text-align: center;margin-top: 400px;">
+            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>  <a href="https://thet.ren">作者：TheT</a> All Rights Reserved</p>
         </div>
     </div>
 </body>
