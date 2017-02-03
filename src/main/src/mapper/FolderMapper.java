@@ -13,4 +13,7 @@ public interface FolderMapper {
     //获取文件列表
     List<FolderWithBLOBs> listFolder(FolderWithBLOBs folderWithBLOBs) throws Exception;
 
+    //获取当前路径的信息
+    FolderWithBLOBs getPathInfo(FolderWithBLOBs folderWithBLOBs) throws Exception;
+
 }

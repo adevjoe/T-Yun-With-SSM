@@ -13,4 +13,8 @@
     SELECT * FROM ty_folder WHERE user_id = #{user_id} AND parent_path = #{parent_path}
   </select>
 
+  <select id="getPathInfo" parameterType="po.FolderWithBLOBs" resultType="po.FolderWithBLOBs">
+    SELECT * FROM ty_folder WHERE user_id = #{user_id} AND file_name = #{file_name}
+  </select>
+
 </mapper>

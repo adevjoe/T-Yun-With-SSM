@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-9 table-responsive">
                 <%-- 路径导航 --%>
-                <ol class="breadcrumb" id="list-path">
+                <ol class="breadcrumb" id="path-list">
                     <li class="active">根目录</li>
                 </ol>
                 <!-- Table -->

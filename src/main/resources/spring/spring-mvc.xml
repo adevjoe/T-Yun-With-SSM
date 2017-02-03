@@ -32,8 +32,9 @@
     <!-- 启用spring mvc 注解 -->
     <context:annotation-config />
 
-    <!-- 扫描controller -->
+    <!-- 扫描handler -->
     <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="api"/>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

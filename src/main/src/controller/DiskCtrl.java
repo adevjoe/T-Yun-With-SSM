@@ -130,7 +130,7 @@ public class DiskCtrl {
             folderService.addFolder(folder);
             result.setObject(folder);
             result.setMsg("创建" + folder.getFile_name() + "成功！");
-            return result;
+            return result;//TODO 需要修复文件夹同名bug
         }
         result.setMsg("用户未登录！");
         return result;
@@ -164,4 +164,5 @@ public class DiskCtrl {
         result.setMsg("用户未登录！");
         return result;
     }
+
 }

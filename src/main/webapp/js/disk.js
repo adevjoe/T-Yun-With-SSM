@@ -3,6 +3,15 @@ $(document).ready(function() {
 });
 
 /**
+ * 初始化disk 页面
+ */
+function init(){
+	$.getJSON("../disk/list", { path: "根目录"}, function(list){
+		addROW(list);
+	});
+}
+
+/**
  * 上传文件
  */
 function upload(){
@@ -30,16 +39,47 @@ function upload(){
  */
 function loadFolder(path){
 	$.getJSON("../disk/list", { path: path}, function(list){
-		addROW(list);
-		$("#list-path").empty();
-		$("#list-path").append("<li class='active'><a href='javascript:;' onclick='loadFolder('根目录')'>根目录</a></li>")
-		$("#list-path").append("<li class='active'><a href='javascript:;' onclick='loadFolder("+"\""+path+"\""+")'>"+path+"</a></li>");
+		//获取当前目录的层级
+		var level = 1;
+		if (!(path === "根目录")){
+			$.getJSON("../api/disk/pathInfo", { path: path}, function(list){
+				level = list["object"]["level"];
+			});
+		}
+		//正式加载目录
+		if (path === "根目录"){//如果是'根目录' ，则没有a标签
+			addROW(list);
+			$("#path-list").empty();
+			$("#path-list").append("<li class='active'>根目录</li>");
+		}
+		else {//遍历目录列表
+			addROW(list);
+			$("#path-list").empty();
+			$.getJSON("../api/disk/pathList", { path: path}, function(pathList){
+				var str = pathList["object"].split("/");//解析获取的字符串，递归文件路径
+				for (var i = 0;i<str.length-1; i++){
+					$("#path-list").append("<li class='active'><a href='javascript:;' onclick='loadFolder("+
+						"\""+str[i]+"\""+")'>" + str[i] +"</a></li>");
+				}
+				//最后一个路径不用a标签
+				$("#path-list").append("<li class='active'>" + str[str.length-1] +"</li>");
+			});
+		}
+
 	});
 }
 
 /**
+ * 加载文件路径
+ * @param list 传进json类型的文件信息数组
+ */
+function loadPath(list){
+
+}
+
+/**
  * 添加文件的行
- * @param list 传进json类型的参数
+ * @param list 传进json类型的文件信息数组
  */
 function addROW(list){
 	list = list["object"];
@@ -57,28 +97,19 @@ function addROW(list){
 	$("#file-list").empty();
 	//遍历文件信息
 	for (var i= 0;i<list.length;i++){
-		if (list[i]["is_dir"]>0){
+		if (list[i]["is_dir"]>0){//遍历文件夹
 			$("#file-list").append("<tr>"+"<td><a href='javascript:;' onclick='loadFolder("+"\""+list[i]['file_name']+"\""+")'>"+list[i]['file_name']+"</a></td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
 				"</tr>");
 		}
-		else {
+		else {//遍历文件
 			$("#file-list").append("<tr>"+"<td>"+list[i]["file_name"]+"</td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
 				"</tr>");
 		}
 	}
-}
-
-/**
- * 初始化disk 页面
- */
-function init(){
-	$.getJSON("../disk/list", { path: "根目录"}, function(list){
-		addROW(list);
-	});
 }
 
 /**

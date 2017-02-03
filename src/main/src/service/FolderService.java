@@ -23,4 +23,12 @@ public interface FolderService {
      * @throws Exception
      */
     List<FolderWithBLOBs> listFolder(FolderWithBLOBs folderWithBLOBs) throws Exception;
+
+    /**
+     * 获取当前路径的信息
+     * @param folderWithBLOBs
+     * @return 当前路径的信息
+     * @throws Exception
+     */
+    FolderWithBLOBs getPathInfo(FolderWithBLOBs folderWithBLOBs) throws Exception;
 }

@@ -23,4 +23,9 @@ public class FolderServiceImpl implements FolderService {
     public List<FolderWithBLOBs> listFolder(FolderWithBLOBs folderWithBLOBs) throws Exception {
         return folderMapper.listFolder(folderWithBLOBs);
     }
+
+    @Override
+    public FolderWithBLOBs getPathInfo(FolderWithBLOBs folderWithBLOBs) throws Exception {
+        return folderMapper.getPathInfo(folderWithBLOBs);
+    }
 }
