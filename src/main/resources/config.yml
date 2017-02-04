@@ -4,8 +4,8 @@ Version: 1.0
 #七牛云
 #设置密钥和空间名称，默认空间为tyun，请先在七牛云创建好空间
 #Chain domain 设置空间的外链域名，格式：xxx.yourdomain.xxx
-ACCESS_KEY: rTQXEQzp9Gh6Be8-xzLoo30KS2TxbaJvBQy6THkx
-SECRET_KEY: OyV2zoN695cM0EpPEKGGDyTbWmKA-U16GcBBJJ_q
+ACCESS_KEY: xxx
+SECRET_KEY: xxx
 bucket: tyun
 chain_domain: download.90play.cn
 
