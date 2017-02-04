@@ -13,8 +13,24 @@
     SELECT * FROM ty_folder WHERE user_id = #{user_id} AND parent_path = #{parent_path}
   </select>
 
+  <!-- 获取当前路径的信息 -->
   <select id="getPathInfo" parameterType="po.FolderWithBLOBs" resultType="po.FolderWithBLOBs">
     SELECT * FROM ty_folder WHERE user_id = #{user_id} AND file_name = #{file_name}
+  </select>
+
+  <!-- 根据id获取文件详细信息 -->
+  <select id="getFileDetail" parameterType="po.FolderWithBLOBs" resultType="po.FolderWithBLOBs">
+    SELECT * FROM ty_folder WHERE id = #{id}
+  </select>
+
+  <!-- 删除文件 -->
+  <delete id="delFile" parameterType="java.lang.Integer">
+    DELETE FROM ty_folder WHERE id = #{id}
+  </delete>
+
+  <!-- 根据id获取文件详细信息 -->
+  <select id="getInfoById" parameterType="java.lang.Integer" resultType="po.FolderWithBLOBs">
+    SELECT * FROM ty_folder WHERE id = #{id}
   </select>
 
 </mapper>

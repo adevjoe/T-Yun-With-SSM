@@ -7,6 +7,8 @@ import po.FolderWithBLOBs;
 import po.Result;
 import service.FolderService;
 import service.UserService;
+import util.QiNiu;
+import util.YmlUtil;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,8 +27,9 @@ public class API_Disk {
     /**
      * 获取当前路径的信息
      * @param session 会话，这里主要验证用户并获取用户id
-     * @param path 获取的路径
+     * @param path 获取的路径，是当前路径，不是父路径
      * @param folderWithBLOBs 一些参数
+     *                        file_name（此处为path）, level 必须
      * @return
      * @throws Exception
      */
@@ -48,6 +51,15 @@ public class API_Disk {
         return result;
     }
 
+    /**
+     * 获取路径列表
+     * @param session 会话，这里主要验证用户并获取用户id
+     * @param path 当前路径
+     * @param folderWithBLOBs 一些参数
+     *                        file_name（此处为path）, level 必须
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/pathList")
     public @ResponseBody
     Result getPathList(HttpSession session, @RequestParam(value = "path") String path,
@@ -109,4 +121,45 @@ public class API_Disk {
         result.setMsg("用户未登录！");
         return result;
     }
+
+    /**
+     * 根据文件id获取详细信息
+     * @param session 会话
+     * @param args 此处只需传入id
+     * @return 响应信息
+     * @throws Exception
+     */
+    @RequestMapping(value = "/fileDetail")
+    public @ResponseBody Result fileDetail(HttpSession session, FolderWithBLOBs args)throws Exception{
+        Result result = new Result();
+        if (API_Utils.isLogin(session)) {
+            FolderWithBLOBs folder = folderService.getFileDetail(args);
+            folder.setComment("http://" + YmlUtil.getValue("chain_domain") + "/" + folder.getComment());
+            result.setObject(folder);
+            result.setMsg("成功！");
+            return result;
+        }
+        result.setMsg("用户未登录！");
+        return result;
+    }
+
+    /**
+     * 删除文件
+     * @param session 会话
+     * @param args 文件id
+     * @return 响应信息
+     * @throws Exception
+     */
+    @RequestMapping(value = "/delFile")
+    public @ResponseBody Result delFile(HttpSession session, FolderWithBLOBs args)throws Exception{
+        Result result = new Result();
+        if (API_Utils.isLogin(session)) {
+            folderService.delFile(args.getId());
+            result.setMsg("成功删除！");
+            return result;
+        }
+        result.setMsg("用户未登录！");
+        return result;
+    }
+
 }

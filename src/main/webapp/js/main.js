@@ -29,10 +29,3 @@ $(document).ready(function() {
 	} );
 
 });
-
-function deleteFile(key){
-	
-}
-function deleteAllFile(items) {
-	// body...
-}

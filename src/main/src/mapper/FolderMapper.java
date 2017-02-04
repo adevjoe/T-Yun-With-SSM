@@ -1,8 +1,6 @@
 package mapper;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
-import po.Folder;
 import po.FolderWithBLOBs;
 
 public interface FolderMapper {
@@ -15,5 +13,14 @@ public interface FolderMapper {
 
     //获取当前路径的信息
     FolderWithBLOBs getPathInfo(FolderWithBLOBs folderWithBLOBs) throws Exception;
+
+    //根据id获取文件详细信息
+    FolderWithBLOBs getFileDetail(FolderWithBLOBs folderWithBLOBs) throws Exception;
+
+    //删除文件
+    void delFile(int id) throws Exception;
+
+    //根据id查询文件信息
+    FolderWithBLOBs getInfoById(int id) throws Exception;
 
 }

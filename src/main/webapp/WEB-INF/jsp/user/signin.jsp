@@ -83,8 +83,9 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        <div class="row" style="text-align: center;margin-top: 400px;">
-            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>  <a href="https://thet.ren">作者：TheT</a> All Rights Reserved</p>
+        <div class="row" style="text-align: center;margin-top: 400px">
+            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
+            <p><a href="https://thet.ren">作者：TheT</a></p>
         </div>
     </div>
 </body>

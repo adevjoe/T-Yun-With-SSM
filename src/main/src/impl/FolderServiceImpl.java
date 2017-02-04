@@ -28,4 +28,29 @@ public class FolderServiceImpl implements FolderService {
     public FolderWithBLOBs getPathInfo(FolderWithBLOBs folderWithBLOBs) throws Exception {
         return folderMapper.getPathInfo(folderWithBLOBs);
     }
+
+    @Override
+    public FolderWithBLOBs getFileDetail(FolderWithBLOBs folderWithBLOBs) throws Exception {
+        return folderMapper.getFileDetail(folderWithBLOBs);
+    }
+
+    @Override
+    public void delFile(int id) throws Exception {
+        if (folderMapper.getInfoById(id).getIs_dir()>0){//递归删除
+            FolderWithBLOBs target = folderMapper.getInfoById(id);
+            target.setParent_path(target.getFile_name());
+            List<FolderWithBLOBs> list = listFolder(target);
+            folderMapper.delFile(id);//最后要删除遍历的文件夹
+            for (FolderWithBLOBs l : list) {
+                delFile(l.getId());
+            }
+        }{
+            folderMapper.delFile(id);
+        }
+    }
+
+    @Override
+    public FolderWithBLOBs getInfoById(int id) throws Exception {
+        return folderMapper.getInfoById(id);
+    }
 }

@@ -87,8 +87,42 @@ function newFolder(file_name){
 	}
 }
 
-function showFileInfo(){
-	alert("hello");
+function showFileInfo(id){
+	$.getJSON("../api/disk/fileDetail", { id: id}, function(data){
+		data = data["object"];
+		if (data["is_dir"]>0){
+			$("#showFileInfo_filename").empty();
+			$("#showFileInfo_filename").append(data['file_name']);
+			$("#showFileInfo_body").empty();
+			$("#showFileInfo_body").append("<span>文件大小: "+formatSize(data["size"])+"</span><br><br>"+
+				"<span>最后更新: "+formatDate(data["update_time"])+"</span><br><br>"+
+				"<a class='btn btn-danger' data-toggle='modal' data-target='#model-delFile' role='button' data-dismiss='modal'>删除</a>");
+			$("#mode-delFile-confirm").attr('onclick', "deleteFile("+id+")");
+			$("#showFileInfo").modal();
+		}else {
+			$("#showFileInfo_filename").empty();
+			$("#showFileInfo_filename").append(data['file_name']);
+			$("#showFileInfo_body").empty();
+			$("#showFileInfo_body").append("<span>文件大小: "+formatSize(data["size"])+"</span><br><br>"+
+				"<span>最后更新: "+formatDate(data["update_time"])+"</span><br><br>"+
+				"<span>外链地址: <a href='"+data['comment']+"' target='_blank'>"+data['comment']+"</a></span><br><br>"+
+				"<a href='"+data['comment']+"?attname="+"' class='btn btn-primary' role='button' data-dismiss='modal' target='_blank'>下载</a>&nbsp;&nbsp;"+
+				"<a class='btn btn-danger' data-toggle='modal' data-target='#model-delFile' role='button' data-dismiss='modal'>删除</a>");
+			$("#mode-delFile-confirm").attr('onclick', "deleteFile("+id+")");
+			$("#showFileInfo").modal();
+		}
+	});
+
+}
+
+function deleteFile(id){
+	var parent_path = $("#path-list>li")[$("#path-list>li").length-1].innerHTML;
+	$.getJSON("../api/disk/delFile", { id: id}, function(data){
+		$("#something_fail>span").remove();
+		$("#something_fail").append("<span>"+ data['msg'] +"</span>");
+		$("#something_fail").removeAttr('hidden');
+		loadFolder(parent_path);
+	});
 }
 
 /**
@@ -118,7 +152,7 @@ function addROW(list){
 				"<span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>&nbsp;&nbsp;"+list[i]['file_name']+"</a></td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+
-				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo()' aria-hidden='true'></span>"+"</td>" +
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo("+list[i]["id"]+")' aria-hidden='true'></span>"+"</td>" +
 				"</tr>");
 		}
 		else {//遍历文件
@@ -128,7 +162,7 @@ function addROW(list){
 				"<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span>&nbsp;&nbsp;"+ list[i]["file_name"]+"</td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+
-				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo()' aria-hidden='true'></span>"+"</td>" +
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo("+list[i]["id"]+")' aria-hidden='true'></span>"+"</td>" +
 				"</tr>");
 		}
 	}

@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 table-responsive">
+            <div class="col-md-9 table-responsive" style="height: 660px;">
                 <%-- 路径导航 --%>
                 <ol class="breadcrumb" id="path-list">
                     <li class="active">根目录</li>
@@ -156,18 +156,6 @@
                     <%--</thead>--%>
                     <%-- 文件列表 --%>
                 </table>
-                <%-- 分页 --%>
-                <nav>
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </nav>
                 <%-- 模态框 --%>
                 <!-- copy modal -->
                 <div class="modal fade model-copy" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -202,11 +190,57 @@
                         </div>
                     </div>
                 </div>
+                <%-- 展示文件详细信息模态框 --%>
+                <div class="modal fade" id="showFileInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="showFileInfo_filename">文件名</h4>
+                            </div>
+                            <div class="modal-body" id="showFileInfo_body">
+                                <%--<a href="#" class="thumbnail">--%>
+                                    <%--<img src="http://download.90play.cn/user/thet/31141410742870.jpg" alt="文件名">--%>
+                                <%--</a>--%>
+                                <span>文件大小:</span><br><br>
+                                <span>最后更新:</span><br><br>
+                                <span>外链地址:</span><br><br>
+                                <a href="#" class="btn btn-primary" role="button" data-dismiss="modal">下载</a>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteFile()">删除</button>
+                                <%--<form>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label for="recipient-name" class="control-label">重命名:</label>--%>
+                                        <%--<input type="text" class="form-control" id="new-name" size="15"/>--%>
+                                    <%--</div>--%>
+                                <%--</form>--%>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%-- 删除文件模态框 --%>
+                <div class="modal fade" id="model-delFile" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body" style="color: red">
+                                该文件或文件夹下所有文件都会被删除，请谨慎操作！
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">取消 </button>
+                                <button type="button" class="btn btn-danger" id="mode-delFile-confirm" data-dismiss="modal">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
-        <div class="row" style="text-align: center;margin-top: 400px;">
-            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>  <a href="https://thet.ren">作者：TheT</a> All Rights Reserved</p>
+        <div class="row" style="text-align: center;">
+            <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
+            <p><a href="https://thet.ren">作者：TheT</a></p>
         </div>
     </div>
 </body>
