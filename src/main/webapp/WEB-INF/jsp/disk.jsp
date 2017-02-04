@@ -97,6 +97,7 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <%-- 云盘使用量 --%>
+                                <h5>使用量</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success" style="width: 35%">
                                         <span class="sr-only">35% Complete (success)</span>
@@ -133,7 +134,27 @@
                     </div>
                 </div>
                 <table class="table table-hover" id="file-list">
-
+                    <thead aria-hidden="true">
+                        <tr>
+                            <%--<th class="checkbox-td">&nbsp;</th>--%>
+                            <th>文件名</th>
+                            <th>文件大小</th>
+                            <th>修改日期</th>
+                        </tr>
+                    </thead>
+                    <%--<thead hidden="hidden" aria-hidden="true">--%>
+                        <%--<tr>--%>
+                            <%--<th class="checkbox-td">--%>
+                                <%--<input type='checkbox' onclick="">--%>
+                            <%--</th>--%>
+                            <%--<th>--%>
+                                <%--<a href="javascript:;" onclick="deleteSeletedFile()">--%>
+                                    <%--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> &nbsp;删除--%>
+                                <%--</a>--%>
+                            <%--</th>--%>
+                        <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%-- 文件列表 --%>
                 </table>
                 <%-- 分页 --%>
                 <nav>

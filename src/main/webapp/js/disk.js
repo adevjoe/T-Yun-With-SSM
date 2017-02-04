@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	init();
+	init();//TODO 加入正则表达式  验证和过滤错误格式的输入
 });
 
 /**
@@ -14,7 +14,7 @@ function init(){
 /**
  * 上传文件
  */
-function upload(){
+function upload(){//TODO 上传进度条的设计
 	var parent_path = $("#path-list>li")[$("#path-list>li").length-1].innerHTML;
 	var level = $("#path-list>li").length;
 	$("#upload-form").ajaxSubmit({
@@ -65,6 +65,10 @@ function loadFolder(path){
 	});
 }
 
+/**
+ * 新建文件夹
+ * @param file_name 文件名
+ */
 function newFolder(file_name){
 	if (file_name === ""){
 		$("#something_fail>span").remove();
@@ -81,6 +85,10 @@ function newFolder(file_name){
 			$("#something_success").removeAttr('hidden');
 		});
 	}
+}
+
+function showFileInfo(){
+	alert("hello");
 }
 
 /**
@@ -100,19 +108,27 @@ function addROW(list){
 		}
 	}
 	//先清空列表
-	$("#file-list").empty();
+	$("#file-list>tbody").empty();
 	//遍历文件信息
 	for (var i= 0;i<list.length;i++){
 		if (list[i]["is_dir"]>0){//遍历文件夹
-			$("#file-list").append("<tr>"+"<td><a href='javascript:;' onclick='loadFolder("+"\""+list[i]['file_name']+"\""+")'>"+list[i]['file_name']+"</a></td>"+
+			//暂时不用复选框    "<td class='checkbox-td'>"+"<input type='checkbox' name='"+list[i]["id"]+"'>"+"</td>" +
+			$("#file-list").append("<tr>"+
+				"<td><a href='javascript:;' onclick='loadFolder("+"\""+list[i]['file_name']+"\""+")'>"+
+				"<span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>&nbsp;&nbsp;"+list[i]['file_name']+"</a></td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
-				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
+				"<td>"+formatDate(list[i]["update_time"])+
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' aria-hidden='true'><a href='javascript:;' onclick='showFileInfo()'></span>"+"</td>" +
 				"</tr>");
 		}
 		else {//遍历文件
-			$("#file-list").append("<tr>"+"<td>"+list[i]["file_name"]+"</td>"+
+			//暂时不用复选框    "<td class='checkbox-td'>"+"<input type='checkbox' name='"+list[i]["id"]+"'>"+"</td>" +
+			$("#file-list").append("<tr>"+
+				"<td>"+
+				"<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span>&nbsp;&nbsp;"+ list[i]["file_name"]+"</td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
-				"<td>"+formatDate(list[i]["update_time"])+"</td>" +
+				"<td>"+formatDate(list[i]["update_time"])+
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' aria-hidden='true'><a href='javascript:;' onclick='showFileInfo()'></span>"+"</td>" +
 				"</tr>");
 		}
 	}
