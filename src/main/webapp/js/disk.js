@@ -118,7 +118,7 @@ function addROW(list){
 				"<span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>&nbsp;&nbsp;"+list[i]['file_name']+"</a></td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+
-				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' aria-hidden='true'><a href='javascript:;' onclick='showFileInfo()'></span>"+"</td>" +
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo()' aria-hidden='true'></span>"+"</td>" +
 				"</tr>");
 		}
 		else {//遍历文件
@@ -128,7 +128,7 @@ function addROW(list){
 				"<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span>&nbsp;&nbsp;"+ list[i]["file_name"]+"</td>"+
 				"<td>"+formatSize(list[i]["size"])+"</td>" +
 				"<td>"+formatDate(list[i]["update_time"])+
-				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' aria-hidden='true'><a href='javascript:;' onclick='showFileInfo()'></span>"+"</td>" +
+				"&nbsp;&nbsp;<span class='glyphicon glyphicon-info-sign' onclick='showFileInfo()' aria-hidden='true'></span>"+"</td>" +
 				"</tr>");
 		}
 	}

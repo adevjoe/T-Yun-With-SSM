@@ -74,10 +74,10 @@ public class DiskCtrl {
 
             //上传到七牛云
             new QiNiu().upLoad(savePath + File.separator + fileName,
-                    keyPath + "/" + fileName);
+                    keyPath);
             //存储文件信息
             folder.setFile_name(fileName);
-            folder.setComment(keyPath + "/" + fileName);
+            folder.setComment(keyPath);
             folder.setParent_path(folderWithBLOBs.getParent_path());
             folder.setLevel(folderWithBLOBs.getLevel());
             folder.setIs_dir(0);
