@@ -87,6 +87,10 @@ function newFolder(file_name){
 	}
 }
 
+/**
+ * 展示文件信息
+ * @param id 文件id
+ */
 function showFileInfo(id){
 	$.getJSON("../api/disk/fileDetail", { id: id}, function(data){
 		data = data["object"];
@@ -106,7 +110,7 @@ function showFileInfo(id){
 			$("#showFileInfo_body").append("<span>文件大小: "+formatSize(data["size"])+"</span><br><br>"+
 				"<span>最后更新: "+formatDate(data["update_time"])+"</span><br><br>"+
 				"<span>外链地址: <a href='"+data['comment']+"' target='_blank'>"+data['comment']+"</a></span><br><br>"+
-				"<a href='"+data['comment']+"?attname="+"' class='btn btn-primary' role='button' data-dismiss='modal' target='_blank'>下载</a>&nbsp;&nbsp;"+
+				"<a href='"+data['comment']+"?attname="+"' class='btn btn-primary' role='button' target='_blank'>下载</a>&nbsp;&nbsp;"+
 				"<a class='btn btn-danger' data-toggle='modal' data-target='#model-delFile' role='button' data-dismiss='modal'>删除</a>");
 			$("#mode-delFile-confirm").attr('onclick', "deleteFile("+id+")");
 			$("#showFileInfo").modal();
@@ -115,6 +119,10 @@ function showFileInfo(id){
 
 }
 
+/**
+ * 删除文件，包括文件夹下属文件
+ * @param id 文件id
+ */
 function deleteFile(id){
 	var parent_path = $("#path-list>li")[$("#path-list>li").length-1].innerHTML;
 	$.getJSON("../api/disk/delFile", { id: id}, function(data){
