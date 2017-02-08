@@ -26,11 +26,11 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script src="${pageContext.request.contextPath}/js/disk.js"></script>
+       
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body style="padding-top: 200px;" >
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <!-- 导航 -->
     <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
         <div class="container">

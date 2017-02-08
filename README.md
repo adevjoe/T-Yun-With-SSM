@@ -22,9 +22,7 @@ Tomcat + mysql + 七牛云
 
 2.修改配置文件。<code>/src/resources/config.yml</code> and <code>/src/resources/db.properties</code>
 
-3.导入sql脚本，sql脚本在<code>/src/resources/config.yml</code>
-
-4.丢到tomcat工作目录，运行tomcat，ok!
+3.丢到tomcat工作目录，运行tomcat，ok!
 
 ##配置文件
 

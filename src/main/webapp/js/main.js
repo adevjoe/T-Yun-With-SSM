@@ -17,15 +17,4 @@ $(document).ready(function() {
 		}
 	});
 
-	/*
-	复制到剪切板
-	 */
-	var client = new ZeroClipboard($(".copy-button"));
-
-	client.on( "ready", function( readyEvent ) {
-	  client.on( "aftercopy", function( event ) {
-		$(".model-copy").attr('aria-hidden', 'false');
-	  } );
-	} );
-
 });
