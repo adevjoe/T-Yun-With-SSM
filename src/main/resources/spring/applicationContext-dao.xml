@@ -49,6 +49,7 @@
     </bean>
 
     <jdbc:initialize-database data-source="dataSource"
+                              ignore-failures="ALL"
                               enabled="true">
         <!-- 用户信息数据库 -->
         <jdbc:script location="classpath:sql/ty_user.sql" />

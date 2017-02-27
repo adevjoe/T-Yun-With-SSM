@@ -154,5 +154,5 @@ public class MD5{
         return instance;
     }
 
-    private MD5(){};
+    private MD5(){}
 }
