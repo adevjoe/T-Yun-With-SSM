@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * Created by Joe_C on 2016/12/4.
+ * Control disk
  */
 @Controller
 @RequestMapping("/disk")
@@ -27,21 +28,6 @@ public class DiskCtrl {
     private FolderService folderService;
     @Autowired
     private UserService userService;
-
-    /**
-     * 云盘主界面的调度
-     * @param session 会话
-     * @param request 请求对象
-     * @return 指定页面
-     * @throws Exception
-     */
-    @RequestMapping(value = "", method = {RequestMethod.POST, RequestMethod.GET})
-    public String disk(HttpSession session, HttpServletRequest request) throws Exception {
-        if (API_Utils.isLogin(session)) {
-            return "disk";
-        }
-        return "redirect:" + request.getContextPath() + "/user/account/signin";
-    }
 
     /**
      * 上传文件
@@ -74,7 +60,7 @@ public class DiskCtrl {
 
             //上传到七牛云
             new QiNiu().upLoad(savePath + File.separator + fileName,
-                    keyPath);
+                    keyPath, YmlUtil.getValue("disk_bucket"));
             //存储文件信息
             folder.setFile_name(fileName);
             folder.setComment(keyPath);

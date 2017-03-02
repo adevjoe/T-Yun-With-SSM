@@ -43,6 +43,7 @@ public class FolderServiceImpl implements FolderService {
             folderMapper.delFile(id);//最后要删除遍历的文件夹
             for (FolderWithBLOBs l : list) {
                 delFile(l.getId());
+                // TODO 需要删除七牛云上的文件
             }
         }{
             folderMapper.delFile(id);

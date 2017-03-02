@@ -41,8 +41,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="${pageContext.request.contextPath}/disk">我的文件</a></li>
 					<li><a href="#">社区</a></li>
-					<li><a href="${pageContext.request.contextPath}/photobucket">图床</a></li>
-					<li><a href="${pageContext.request.contextPath}/Udisk">移动U盘</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo_bucket">图床</a></li>
+					<li><a href="${pageContext.request.contextPath}/u_disk">移动U盘</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<%if (session.getAttribute("id")==null){%>
@@ -70,15 +70,15 @@
 		<div class="row">
 			<!-- Banner -->
 			<div class="jumbotron">
-				<h1>欢迎使用T-Yun云存储</h1>
-				<p>一个轻便、易用、快速的云存储网站</p>
+				<h1>欢迎使用 T-Yun 云服务平台</h1>
+				<p>轻便  快速  安全</p>
+				<p>图床采用 https 安全传输</p>
 				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
 			</div>
 			<!-- End Banner -->
 		</div>
 		<div class="row" style="text-align: center;margin-top: 400px">
 			<p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
-			<p><a href="https://thet.ren">作者：TheT</a></p>
 		</div>
 	</div>
 </body>
