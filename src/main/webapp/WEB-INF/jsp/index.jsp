@@ -41,8 +41,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="${pageContext.request.contextPath}/disk">我的文件</a></li>
 					<li><a href="#">社区</a></li>
-					<li><a href="photobucket.jsp">图床</a></li>
-					<li><a href="Udisk.jsp">移动U盘</a></li>
+					<li><a href="${pageContext.request.contextPath}/photobucket">图床</a></li>
+					<li><a href="${pageContext.request.contextPath}/Udisk">移动U盘</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<%if (session.getAttribute("id")==null){%>

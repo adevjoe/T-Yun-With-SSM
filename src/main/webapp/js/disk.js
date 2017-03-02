@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	init();//TODO 加入正则表达式  验证和过滤错误格式的输入
+	//TODO 增加批量删除
+	//TODO 优化上传，增加上传队列
 });
 
 /**

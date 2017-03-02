@@ -47,9 +47,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="${pageContext.request.contextPath}/disk">我的文件</a></li>
-                    <li><a href="${pageContext.request.contextPath}/disk">社区</a></li>
-                    <li><a href="${pageContext.request.contextPath}/disk">图床</a></li>
-                    <li><a href="${pageContext.request.contextPath}/disk">移动U盘</a></li>
+                    <li><a href="#">社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/photobucket">图床</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Udisk">移动U盘</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <%if (session.getAttribute("isLogin")==null){%>
