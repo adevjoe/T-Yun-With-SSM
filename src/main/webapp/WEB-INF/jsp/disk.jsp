@@ -48,8 +48,8 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="${pageContext.request.contextPath}/disk">我的文件</a></li>
                     <li><a href="#">社区</a></li>
-                    <li><a href="${pageContext.request.contextPath}/photobucket">图床</a></li>
-                    <li><a href="${pageContext.request.contextPath}/Udisk">移动U盘</a></li>
+                    <li><a href="${pageContext.request.contextPath}/photo_bucket">图床</a></li>
+                    <li><a href="${pageContext.request.contextPath}/u_disk">移动U盘</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <%if (session.getAttribute("isLogin")==null){%>
@@ -248,7 +248,6 @@
         </div>
         <div class="row" style="text-align: center;">
             <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
-            <p><a href="https://thet.ren">作者：TheT</a></p>
         </div>
     </div>
 </body>

@@ -11,7 +11,7 @@ disk_bucket: tyun
 #移动U盘存储空间
 u_disk_bucket: tyun
 #图床存储空间
-img_bucket: img
+img_bucket: img-bucket
 #文件外链地址
 chain_domain: http://download.90play.cn
 #移动U盘外链地址

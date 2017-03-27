@@ -29,14 +29,14 @@ public class QiNiu {
 
     /**
      * 上传文件
-     * @param path 文件服务器路径
+     * @param localPath 文件在服务器的本地路径
      * @param key 文件在七牛云中存储使用的key值
      * @param bucket 存储空间
      */
-    public void upLoad(String path, String key, String bucket){
+    public void upLoad(String localPath, String key, String bucket){
         try {
             //调用put方法上传
-            Response res = uploadManager.put(path, key, getUpToken(bucket));
+            Response res = uploadManager.put(localPath, key, getUpToken(bucket));
             //打印返回信息
             System.out.printf(res.bodyString());
         } catch (QiniuException e) {

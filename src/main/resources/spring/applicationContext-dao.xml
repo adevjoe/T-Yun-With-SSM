@@ -55,6 +55,8 @@
         <jdbc:script location="classpath:sql/ty_user.sql" />
         <!-- 文件和文件夹数据库 -->
         <jdbc:script location="classpath:sql/ty_folder.sql" />
+        <!-- 移动u盘数据库 -->
+        <jdbc:script location="classpath:sql/ty_u_disk.sql" />
     </jdbc:initialize-database>
 
     <!-- Mapper 扫描器 -->

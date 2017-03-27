@@ -74,7 +74,56 @@
 </nav>
 <!-- 布局 -->
 <div class="container">
-
+    <!-- 图床主界面 -->
+    <div class="row" style="margin-top: 50px">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="text-align: center">
+            <form id="upload-form" role="form" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" onchange="upload()" accept="image/jpg,image/jpeg,image/png,image/gif">
+                <button type="button" class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;上传
+                </button>
+            </form>
+            <script>
+                function upload(){
+                    $("#upload-form").ajaxSubmit({
+                        url: "../api/photo_bucket/upload",
+                        type: "post",
+                        enctype: 'multipart/form-data',
+                        dataType:'json',
+                        data:{},
+                        success: function (data)
+                        {
+                            //上传成功后重载页面，以显示上传的文件
+                            $("#preImg").empty();
+                            $("#preImg").append("<img src='"+data["object"]+"' style='width: 90%; height: auto'>");
+                            $("#show_url").attr("value", data["object"]);
+                            $("#show_url_md").attr("value", "![](" + data["object"] + ")");
+                        },
+                        error: function (data)
+                        {
+                            alert("上传失败！");
+                        }
+                    });
+                }
+            </script>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <%-- 相应内容 --%>
+    <div class="row" style="margin-top: 50px">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="text-align: center">
+            <%-- 预览图片 --%>
+            <div id="preImg"></div>
+            <br>
+            <span>URL:</span>
+            <input type="text" class="form-control" id="show_url" value="" size="60"><br>
+            <span>Markdown:</span>
+            <input type="text" class="form-control" id="show_url_md" value="" size="60">
+        </div>
+        <div class="col-md-3"></div>
+    </div>
     <div class="row" style="text-align: center;margin-top: 400px">
         <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
     </div>

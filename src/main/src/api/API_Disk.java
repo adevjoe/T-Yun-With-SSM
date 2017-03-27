@@ -7,7 +7,6 @@ import po.FolderWithBLOBs;
 import po.Result;
 import service.FolderService;
 import service.UserService;
-import util.QiNiu;
 import util.YmlUtil;
 
 import javax.servlet.http.HttpSession;
@@ -134,7 +133,7 @@ public class API_Disk {
         Result result = new Result();
         if (API_Utils.isLogin(session)) {
             FolderWithBLOBs folder = folderService.getFileDetail(args);
-            folder.setComment("http://" + YmlUtil.getValue("chain_domain") + "/" + folder.getComment());
+            folder.setComment(YmlUtil.getValue("chain_domain") + "/" + folder.getComment());
             result.setObject(folder);
             result.setMsg("成功！");
             return result;

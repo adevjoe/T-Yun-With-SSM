@@ -74,7 +74,17 @@
 </nav>
 <!-- 布局 -->
 <div class="container">
+    <div class="col-md-6">
+        <form id="upload-form" role="form" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" onchange="upload()">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;上传
+            </button>
+        </form>
+    </div>
+    <div class="col-md-6">
 
+    </div>
     <div class="row" style="text-align: center;margin-top: 400px">
         <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
     </div>

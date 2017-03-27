@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UDiskMapper">
+
+    <!-- 添加文件 -->
+    <insert id="addFile" parameterType="po.UDisk">
+        INSERT INTO ty_u_disk(mark, code, url, create_time) value(#{mark},#{code},#{url},#{create_time})
+    </insert>
+
+    <!-- 根据联系标识查找文件 -->
+    <select id="getFilesByMark" parameterType="java.lang.String" resultType="po.UDisk">
+        SELECT * from ty_u_disk WHERE mark=#{mark}
+    </select>
+
+    <!-- 根据提取码获取文件 -->
+    <select id="getFileByCode" parameterType="java.lang.String" resultType="po.UDisk">
+        SELECT * from ty_u_disk WHERE code=#{code}
+    </select>
+
+</mapper>
