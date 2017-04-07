@@ -63,13 +63,4 @@ public class QiNiu {
             System.out.println(r.toString());
         }
     }
-
-    /**
-     * 获取文件下载链接
-     * @param key 文件的key
-     * @return 文件的下载链接
-     */
-    public String getDownloadURL(String key){
-        return YmlUtil.getValue("chain_domain") + "/" + key;
-    }
 }

@@ -74,17 +74,18 @@
 </nav>
 <!-- 布局 -->
 <div class="container">
-    <div class="col-md-6">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" style="text-align: center">
         <form id="upload-form" role="form" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" onchange="upload()">
-            <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;上传
+            <input type="file" name="file">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;选择文件
             </button>
+            <input type="text" name="mark" value="请输入联系方式以找回文件，QQ 号、邮箱均可。" required>
         </form>
+        <button type="button" class="btn btn-default" onclick="upload()">上传</button>
     </div>
-    <div class="col-md-6">
-
-    </div>
+    <div class="col-md-2"></div>
     <div class="row" style="text-align: center;margin-top: 400px">
         <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
     </div>

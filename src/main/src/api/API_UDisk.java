@@ -36,7 +36,7 @@ public class API_UDisk {
      */
     @RequestMapping("/upload")
     public @ResponseBody
-    Result upload(@RequestParam(value = "file") MultipartFile file,@RequestParam(value = "file") String mark, HttpServletRequest request){
+    Result upload(@RequestParam(value = "file") MultipartFile file,@RequestParam(value = "mark") String mark, HttpServletRequest request){
         Result result = new Result();
         //获取文件名
         String fileName = file.getOriginalFilename();
