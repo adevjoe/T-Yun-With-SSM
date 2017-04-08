@@ -99,6 +99,7 @@
                             $("#preImg").append("<img src='"+data["object"]+"' style='width: 90%; height: auto'>");
                             $("#show_url").attr("value", data["object"]);
                             $("#show_url_md").attr("value", "![](" + data["object"] + ")");
+							$("#show_url_md_w").attr("value", "![](" + data["object"] + "?imageMogr2/thumbnail/640x/blur/1x0/quality/100"+")");
                         },
                         error: function (data)
                         {
@@ -120,7 +121,9 @@
             <span>URL:</span>
             <input type="text" class="form-control" id="show_url" value="" size="60"><br>
             <span>Markdown:</span>
-            <input type="text" class="form-control" id="show_url_md" value="" size="60">
+            <input type="text" class="form-control" id="show_url_md" value="" size="60"><br>
+			<span>指定宽度640px:</span>
+            <input type="text" class="form-control" id="show_url_md_w" value="" size="60"><br>
         </div>
         <div class="col-md-3"></div>
     </div>
