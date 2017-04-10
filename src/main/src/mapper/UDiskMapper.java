@@ -16,6 +16,6 @@ public interface UDiskMapper {
     List<UDisk> getFilesByMark(String mark) throws Exception;
 
     //根据提取码获取文件
-    UDisk getFileByCode(String code) throws Exception;
+    UDisk getFileByCode(int id) throws Exception;
 
 }

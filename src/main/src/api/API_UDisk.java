@@ -2,6 +2,7 @@ package api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,13 +31,13 @@ public class API_UDisk {
     /**
      * 上传文件
      * @param file 文件
-     * @param mark 联系人标识
+     * @param u 联系人标识
      * @param request 请求对象
      * @return 响应信息
      */
     @RequestMapping("/upload")
     public @ResponseBody
-    Result upload(@RequestParam(value = "file") MultipartFile file,@RequestParam(value = "mark") String mark, HttpServletRequest request){
+    Result upload(@RequestParam(value = "file") MultipartFile file, UDisk u, HttpServletRequest request){
         Result result = new Result();
         //获取文件名
         String fileName = file.getOriginalFilename();
@@ -64,7 +65,9 @@ public class API_UDisk {
         UDisk uDisk = new UDisk();
         uDisk.setCode(API_Utils.getRandomString(8));
         uDisk.setCreate_time(System.currentTimeMillis());
-        uDisk.setMark(mark);
+        if (u.getMark() != null){
+            uDisk.setMark(u.getMark());
+        }
         uDisk.setUrl(keyPath);
         try {
             uDiskService.addFile(uDisk);
@@ -82,6 +85,22 @@ public class API_UDisk {
         return result;
     }
 
-
+    /**
+     * 获取文件
+     * @param u　提取码
+     * @return 响应信息
+     */
+    @RequestMapping("/getFile")
+    public @ResponseBody Result getFile(UDisk u){
+        Result result = new Result();
+        try {
+            UDisk uDisk = uDiskService.getFileByCode(u.getId());
+            result.setObject(uDisk);
+            result.setMsg("获取成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }

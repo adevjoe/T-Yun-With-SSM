@@ -6,6 +6,9 @@
 
     <!-- 添加文件 -->
     <insert id="addFile" parameterType="po.UDisk">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO ty_u_disk(mark, code, url, create_time) value(#{mark},#{code},#{url},#{create_time})
     </insert>
 
@@ -15,8 +18,8 @@
     </select>
 
     <!-- 根据提取码获取文件 -->
-    <select id="getFileByCode" parameterType="java.lang.String" resultType="po.UDisk">
-        SELECT * from ty_u_disk WHERE code=#{code}
+    <select id="getFileByCode" parameterType="java.lang.Integer" resultType="po.UDisk">
+        SELECT * from ty_u_disk WHERE id=#{id}
     </select>
 
 </mapper>

@@ -20,8 +20,8 @@
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"></property>
-        <property name="suffix" value=".jsp"></property>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <!-- 注解映射器 -->
@@ -31,7 +31,7 @@
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
 
     <!-- 使用mvc:annotation代替上面的注解适配器 -->
-    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <mvc:annotation-driven />
 
     <!-- 全局异常处理器 -->
     <bean class="exception.CustomExceptionResolver"/>
@@ -39,9 +39,7 @@
     <!-- 文件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置文件最大上传尺寸 -->
-        <property name="maxUploadSize">
-            <value>50000000</value>
-        </property>
+        <property name="maxUploadSize" value="50000000"/>
     </bean>
 
     <!-- 静态资源解析 -->

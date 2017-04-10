@@ -74,18 +74,66 @@
 </nav>
 <!-- 布局 -->
 <div class="container">
-    <div class="col-md-2"></div>
-    <div class="col-md-8" style="text-align: center">
-        <form id="upload-form" role="form" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <button type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;选择文件
-            </button>
-            <input type="text" name="mark" value="请输入联系方式以找回文件，QQ 号、邮箱均可。" required>
-        </form>
-        <button type="button" class="btn btn-default" onclick="upload()">上传</button>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="text-align: center">
+            <form id="upload-form" role="form" method="post">
+                <input type="file" name="file">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> &nbsp;选择文件
+                </button>
+                <br><br>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="row" style="text-align: center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <%--<input type="text" class="form-control" id="mark" name="mark" placeholder="请输入联系方式..." required>--%>
+            <%--<span style="color: gray;">如果需要找回文件，请输入联系方式，qq、手机号、邮箱等不会重复的即可。</span><br><br>--%>
+            <button type="button" class="btn btn-success" onclick="upload()">上传</button><br><br>
+            <span style="color: gray;">上传之后请记住提取码！</span>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <script>
+        function upload() {
+            var mark = $("#mark").val();
+            $("#upload-form").ajaxSubmit({
+                url: "../api/u_disk/upload",
+                type: "post",
+                enctype: 'multipart/form-data',
+                dataType:'json',
+                data:{mark: mark},
+                success: function (data)
+                {
+                    alert("你的提取码为：" + data.object.id);
+                },
+                error: function (data)
+                {
+                    alert("上传失败！");
+                }
+            });
+        }
+    </script>
+    <hr>
+    <div class="row" style="text-align: center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <input type="number" class="form-control" id="code" name="code" placeholder="请输入提取码..." required><br>
+            <button type="button" class="btn btn-success" onclick="getFile()">获取文件</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <script>
+        function getFile() {
+            var id = $("#code").val();
+            $.getJSON("../api/u_disk/getFile", { "id": id }, function(json){
+                window.open("http://download.90play.cn/"+json.object.url);
+            });
+        }
+    </script>
     <div class="row" style="text-align: center;margin-top: 400px">
         <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
     </div>

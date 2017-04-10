@@ -6,12 +6,12 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 用户管理的service -->
-    <bean id="UserService" class="impl.UserServiceImpl"/>
+    <bean id="userService" class="impl.UserServiceImpl"/>
 
     <!-- 文件管理的service -->
-    <bean id="FolderService" class="impl.FolderServiceImpl"/>
+    <bean id="folderService" class="impl.FolderServiceImpl"/>
 
     <!-- 移动U盘管理的service -->
-    <bean id="UDiskService" class="impl.UDiskImpl"/>
+    <bean id="diskService" class="impl.UDiskImpl"/>
 
 </beans>

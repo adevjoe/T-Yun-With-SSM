@@ -30,5 +30,5 @@ public interface UDiskService {
      * @return 文件信息
      * @throws Exception 异常
      */
-    UDisk getFileByCode(String code) throws Exception;
+    UDisk getFileByCode(int code) throws Exception;
 }

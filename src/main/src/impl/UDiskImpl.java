@@ -27,7 +27,7 @@ public class UDiskImpl implements UDiskService {
     }
 
     @Override
-    public UDisk getFileByCode(String code) throws Exception {
+    public UDisk getFileByCode(int code) throws Exception {
         return uDiskMapper.getFileByCode(code);
     }
 }
