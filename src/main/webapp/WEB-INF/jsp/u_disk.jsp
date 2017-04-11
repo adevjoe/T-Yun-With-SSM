@@ -108,7 +108,9 @@
                 data:{mark: mark},
                 success: function (data)
                 {
-                    alert("你的提取码为：" + data.object.id);
+                    $("#msg").empty();
+                    $("#msg").append("<h4>文件提取码："+data.object.id+"</h4>");
+                    $("#tipModal").modal('show');
                 },
                 error: function (data)
                 {
@@ -129,11 +131,27 @@
     <script>
         function getFile() {
             var id = $("#code").val();
-            $.getJSON("../api/u_disk/getFile", { "id": id }, function(json){
-                window.open("http://download.90play.cn/"+json.object.url);
+            $.getJSON("../api/u_disk/getFile", { "id": id }, function(data){
+                $("#msg").empty();
+                $("#msg").append("<h4>文件提取码："+data.object.id+"</h4>");
+                $("#msg").append("<h4>文件地址：<a href='http://download.90play.cn/"+data.object.url+
+                    "'>http://download.90play.cn/"+data.object.url+"</a></h4>");
+                $("#tipModal").modal('show');
             });
         }
     </script>
+    <div class="modal fade" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="msg"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row" style="text-align: center;margin-top: 400px">
         <p>Copyright © 2016 <a href="http://www.90play.cn">90PLAY.CN</a>   All Rights Reserved</p>
     </div>
